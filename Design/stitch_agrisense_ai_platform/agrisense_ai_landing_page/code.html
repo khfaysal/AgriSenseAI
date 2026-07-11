@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AgriSense AI - Smart Farming for Bangladesh</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(163, 246, 156, 0.15) 0%, transparent 70%);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed-dim": "#ffb1c7",
+                      "surface-container-low": "#f3f3f5",
+                      "surface-dim": "#d9dadc",
+                      "on-background": "#1a1c1d",
+                      "on-secondary-fixed-variant": "#0c5216",
+                      "on-surface-variant": "#40493d",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-container": "#307231",
+                      "secondary-container": "#acf4a4",
+                      "on-surface": "#1a1c1d",
+                      "on-tertiary-container": "#ffedf0",
+                      "surface-variant": "#e2e2e4",
+                      "surface-container": "#eeeef0",
+                      "surface-container-highest": "#e2e2e4",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed-dim": "#91d78a",
+                      "surface-bright": "#f9f9fb",
+                      "on-secondary": "#ffffff",
+                      "outline-variant": "#bfcaba",
+                      "primary-fixed": "#a3f69c",
+                      "on-error-container": "#93000a",
+                      "on-primary-container": "#cbffc2",
+                      "inverse-primary": "#88d982",
+                      "secondary": "#2a6b2c",
+                      "surface-tint": "#1b6d24",
+                      "surface-container-high": "#e8e8ea",
+                      "surface-container-lowest": "#ffffff",
+                      "outline": "#707a6c",
+                      "error-container": "#ffdad6",
+                      "on-error": "#ffffff",
+                      "primary-fixed-dim": "#88d982",
+                      "surface": "#f9f9fb",
+                      "on-primary-fixed": "#002204",
+                      "on-secondary-fixed": "#002203",
+                      "primary-container": "#2e7d32",
+                      "background": "#f9f9fb",
+                      "inverse-on-surface": "#f0f0f2",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed-variant": "#005312",
+                      "on-tertiary-fixed-variant": "#7f2448",
+                      "inverse-surface": "#2f3132",
+                      "secondary-fixed": "#acf4a4",
+                      "primary": "#0d631b",
+                      "tertiary": "#923357",
+                      "on-tertiary-fixed": "#3f001c",
+                      "tertiary-fixed": "#ffd9e2",
+                      "tertiary-container": "#b14b6f"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sm": "16px",
+                      "xs": "8px",
+                      "base": "4px",
+                      "md": "24px",
+                      "gutter": "24px",
+                      "lg": "40px",
+                      "margin": "32px",
+                      "xl": "64px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "display-lg-mobile": ["Inter"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-sm": ["13px", {"lineHeight": "16px", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-sm h-20 flex items-center">
+<div class="max-w-7xl mx-auto w-full px-margin flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="text-headline-md font-headline-md font-bold text-primary">AgriSense AI</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md transition-colors" href="#dashboard">Dashboard</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#features">Features</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#how-it-works">Methodology</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#contact">Support</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all p-2 rounded-full hover:bg-surface-container">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all p-2 rounded-full hover:bg-surface-container">settings</button>
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a modern agricultural technologist in a clean laboratory setting, wearing a white coat and holding a digital tablet. The background is softly blurred showing green indoor vertical farming systems. The lighting is bright and airy with a primary color palette of soft greens and clean whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg7p9mU_dafBEsCKH24pIQO3VYxJ8hBeT8Auop26-8AEW5kRI8kwYgw89qhafB8USp6U8-tH3DNe3EHiZ0EWIpHOSQp_TC5WpHsjDWbqy6OQVhZJR_BBHh_6Hl_EgmW5fBIEHu6XREHxYeMIwf3nb70c7LW8ZkO7TnBy3-im7OQkGyYoWPMzYyFG7N9y_kKbMo_j61bqihQRGz-OSMGjMlv-kyootFIGzGRZ_PHr7C0njcAI1RMstmbw"/>
+</div>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[90vh] flex items-center overflow-hidden hero-gradient">
+<div class="max-w-7xl mx-auto px-margin grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-6 space-y-8">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary-container text-on-secondary-container text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+                        AI-Powered Precision Farming
+                    </div>
+<h1 class="text-display-lg-mobile md:text-display-lg font-display-lg leading-tight text-on-surface">
+                        Smart Farming Powered by <span class="text-primary">Artificial Intelligence</span>
+</h1>
+<p class="text-body-lg text-on-surface-variant max-w-xl">
+                        Detect crop diseases, recommend crops, optimize irrigation, and predict weather with our advanced AI models built for Bangladesh's unique agricultural landscape.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<button class="px-8 py-4 bg-primary text-on-primary rounded-xl font-headline-md hover:scale-105 transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">rocket_launch</span>
+                            Get Started
+                        </button>
+<button class="px-8 py-4 border-2 border-primary text-primary rounded-xl font-headline-md hover:bg-primary/5 transition-all flex items-center justify-center gap-2">
+                            Learn More
+                        </button>
+</div>
+<div class="flex items-center gap-6 pt-4 text-on-surface-variant">
+<div class="flex -space-x-3">
+<div class="w-10 h-10 rounded-full border-2 border-white bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a cheerful Bangladeshi farmer in a sunlit rice field, wearing a traditional lungi and a bright smile. The lighting is warm golden hour, emphasizing textures of the outdoors. High-end photography style with professional depth of field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCscgoIkwqehKxzn6kN1JREfYXnN-g7WBFaRK65uqh_kxVFMMb_NgCH-MZe-i44i-p7-rsjijCihbAC__YAOP3gBetug4jFDVMUm1RDrxqTbZYV-p7q1XtpfgmrzQPbr686bg6q6Rth0xx8ZitdyzrUyfFHsSumvYz1swKji-tPX8Mvxk6tYSS5dBODR9epg-m1YPoPaK0c1YRmxd-XXelbwOU8bNwzPSemBCplJ6DdJSwX0k3OvopUdw"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-white bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of a young female agricultural researcher examining plant leaves in a modern high-tech greenhouse. She wears professional attire and glasses, reflecting a smart, expert persona. Soft natural light illuminates the vibrant green foliage behind her." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDql39I1QGLcginbuj00V3pcSDr8WJZxDerV0iorF_1lIVnHIpZK1ITYMpkcURRV1dQsRVkTd45ChTXlFXJ1ZEYaMEm8x_rwQqKcXTQN7yrgam8y2zUdbEqSsft4ziTCz5yNNG9NXx2zWAMjTKnb_Ap1-uoYzv9x8kr4eU-WHqkgsP4g6E2eLmLL_COyDg3lPLnD9Vk9Loo9n1Qi7PsrcZk6DlLhRtlZrGLocTTAVxT9aAhk2z4UXm6Zw"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-white bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Headshot of a modern agronomist smiling at the camera, wearing a branded polo shirt. Background features a blurred view of a lush vegetable plantation in Bangladesh. The aesthetic is clean, professional, and optimistic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiMZ9WJd9_h8mmwHZPZfv0pwA1YZ-vXPZrvQ-VzemwZcnXVSNeQJjRO7CKYs7ESj6AwwGA5BoAo7HD7HXC2YG8d67kliYy8q_T3Fh9hZmP_PrUROHBtI8VizjyWxEa09AowgOU41c5q6mkFWCax9Tqe0RRHxRXlM1JQfyaMA0tUD_z_yTYuW-cb-Ezfv6ifVH_0zOxgWpNt5CbfjEmGLTA5C2icB_9ByikQvvLieSyeOAMxIHbbmSqcA"/>
+</div>
+</div>
+<p class="text-label-sm font-label-sm">Trusted by 50,000+ farmers nationwide</p>
+</div>
+</div>
+<div class="lg:col-span-6 relative">
+<div class="relative z-10 float-animation">
+<img alt="AgriSense App Preview" class="rounded-[2.5rem] shadow-2xl border-8 border-inverse-surface w-full max-w-[500px] mx-auto lg:ml-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuXQDHj0hivnlJjrx5FhsTiTHwBXahF0JeOB0_inPk8_26iEVmpHhUPigI7IunYXXwua7JpWT4h95hLjb7gLThbuNufrkU0cTeBV8p3Vd9PUuzomtF47tchJt4586y3IG0K0d-m-APr8voUWxwt7xpMxLgJNbBjbU-TpigbYX_XUfjXfMHPja_s_FdD-QfHb542qdHUjr3G2IBU4XFT3rznnmrVycyQj-WH-cAfjVQjiNhqyzU9NEnjMKvIOkhhNF8cgw"/>
+</div>
+<!-- Decorative Elements -->
+<div class="absolute -top-10 -right-10 w-48 h-48 bg-primary-fixed-dim/30 rounded-full blur-3xl -z-10"></div>
+<div class="absolute -bottom-20 -left-10 w-64 h-64 bg-secondary-container/20 rounded-full blur-3xl -z-10"></div>
+</div>
+</div>
+</section>
+<!-- Features Section -->
+<section class="py-xl bg-surface" id="features">
+<div class="max-w-7xl mx-auto px-margin">
+<div class="text-center max-w-2xl mx-auto mb-xl">
+<h2 class="text-headline-md font-headline-md text-on-surface mb-4">Powerful Features for Modern Agriculture</h2>
+<p class="text-body-md text-on-surface-variant">Our comprehensive suite of tools helps you make data-driven decisions for higher yields and healthier crops.</p>
+</div>
+<div class="bento-grid">
+<!-- Feature 1: Disease Detection -->
+<div class="col-span-12 md:col-span-8 glass-card p-margin rounded-xl group hover:border-primary transition-all overflow-hidden relative">
+<div class="flex flex-col h-full justify-between relative z-10">
+<div>
+<div class="w-12 h-12 bg-primary-fixed rounded-lg flex items-center justify-center mb-6 text-primary">
+<span class="material-symbols-outlined text-[32px]">biotech</span>
+</div>
+<h3 class="text-headline-md font-headline-md mb-2">Instant Disease Detection</h3>
+<p class="text-body-md text-on-surface-variant max-w-md">Upload a photo of your crop to identify 100+ diseases instantly with 98% accuracy using our specialized neural networks.</p>
+</div>
+<div class="mt-8 flex items-center gap-4">
+<button class="text-primary font-bold flex items-center gap-1 group-hover:gap-2 transition-all">
+                                    Try AI Scanner <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="absolute right-0 bottom-0 w-1/2 h-full opacity-10 group-hover:opacity-20 transition-opacity pointer-events-none">
+<img class="w-full h-full object-cover" data-alt="High-resolution macro shot of a healthy green leaf juxtaposed with a leaf showing early signs of fungal disease. The image is clean and clinical, with soft studio lighting. Minimalist aesthetic focusing on the biological textures and the contrast between health and disease." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_ahr2ZT21Cf1o2yO7WgBBXP8Eehh7aTvbk81mOuhbyCsH-ZtnYV-NCczawi4t8ieOTn7VlwEy0ir-P6qMshrbF6d_ojquJtCQnl4-G1IkztTU4iwRlLqv2kVjN2yf7KcmmZYWxeZusQPqkOMl_5_tqKQ4pFGipnoGN9qscbCaqUcYQosCTdwl1bCieYoIoRR-Ipn89Jpq5iW2trW3anD5DYcfpbpWRvzcV_pmuILEWmnOlRXLTQholw"/>
+</div>
+</div>
+<!-- Feature 2: Weather -->
+<div class="col-span-12 md:col-span-4 bg-primary text-on-primary p-margin rounded-xl relative overflow-hidden">
+<div class="relative z-10 h-full flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-[40px] mb-4">cloud_sync</span>
+<h3 class="text-headline-md font-headline-md mb-2">Hyper-local Weather</h3>
+<p class="text-body-md opacity-90">Precision forecasts for your specific Upazila to plan sowing and harvesting periods perfectly.</p>
+</div>
+<div class="bg-white/10 backdrop-blur-md rounded-lg p-4 mt-4">
+<div class="flex justify-between items-center">
+<span class="font-bold">Bogura Today</span>
+<span class="text-xl">32°C</span>
+</div>
+<div class="w-full bg-white/20 h-1 rounded-full mt-2 overflow-hidden">
+<div class="w-3/4 bg-white h-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Feature 3: Crop Recommendation -->
+<div class="col-span-12 md:col-span-5 bg-surface-container-high p-margin rounded-xl border border-outline-variant">
+<div class="w-12 h-12 bg-secondary-container rounded-lg flex items-center justify-center mb-6 text-on-secondary-container">
+<span class="material-symbols-outlined text-[32px]">psychology</span>
+</div>
+<h3 class="text-headline-md font-headline-md mb-2">Crop Recommendation</h3>
+<p class="text-body-md text-on-surface-variant">Get tailored suggestions based on soil pH, nitrogen levels, and moisture to maximize your seasonal profit.</p>
+</div>
+<!-- Feature 4: Assistant -->
+<div class="col-span-12 md:col-span-7 bg-white p-margin rounded-xl border border-outline-variant flex gap-6 items-center">
+<div class="flex-1">
+<h3 class="text-headline-md font-headline-md mb-2">Expert AI Assistant</h3>
+<p class="text-body-md text-on-surface-variant mb-4">Chat with our agricultural AI in Bengali or English to solve complex farming challenges 24/7.</p>
+<button class="px-6 py-2 bg-secondary text-on-secondary rounded-lg font-label-sm">Chat Now</button>
+</div>
+<div class="w-1/3 hidden sm:block">
+<img class="w-full" data-alt="A 3D stylized representation of a friendly robotic assistant floating amidst floating farm icons like corn, water droplets, and sun. The style is modern 3D claymorphism with soft shadows and a professional agricultural green and white color palette. Clean white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVM_wLHPkyipnkpucenYW32BJrwMujuO-rDJgnHZ7m_fzW8Hk-yWHnWKfMVZo5XZzqA7YIsRVdZkR1WH7Unp__V9Wt1QEN6zVJq14A7s5vPeIp3_xb4pFs_xIBOWif6vNDgR7f1G6_EqHyh5r9ai4Vd-PDdkj4_X5yXU9VwUCUxSkoFlxGUO5cD1A1TPqzcKlrACoCEDBB1TBNb8BkMoKnJKpnwUVafpeXHSM1ZGlkLaI7D2kSEZJSsQ"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- How It Works -->
+<section class="py-xl bg-surface-bright" id="how-it-works">
+<div class="max-w-7xl mx-auto px-margin">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+<!-- Connector line for desktop -->
+<div class="hidden md:block absolute top-1/4 left-[20%] right-[20%] h-[2px] border-t-2 border-dashed border-outline-variant -z-0"></div>
+<div class="relative z-10 text-center">
+<div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-outline-variant text-primary font-bold text-2xl">1</div>
+<h4 class="text-headline-md font-headline-md mb-3">Scan</h4>
+<p class="text-body-md text-on-surface-variant">Take a photo of your crop or upload field data through the mobile app.</p>
+</div>
+<div class="relative z-10 text-center">
+<div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-outline-variant text-primary font-bold text-2xl">2</div>
+<h4 class="text-headline-md font-headline-md mb-3">Analyze</h4>
+<p class="text-body-md text-on-surface-variant">Our AI engines process data in seconds to identify needs and threats.</p>
+</div>
+<div class="relative z-10 text-center">
+<div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg text-on-primary font-bold text-2xl">3</div>
+<h4 class="text-headline-md font-headline-md mb-3">Grow</h4>
+<p class="text-body-md text-on-surface-variant">Follow tailored action plans to increase yield and reduce waste.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Call to Action -->
+<section class="py-xl">
+<div class="max-w-7xl mx-auto px-margin">
+<div class="bg-primary-container rounded-[2rem] p-margin md:p-xl text-center text-on-primary-container overflow-hidden relative">
+<div class="relative z-10">
+<h2 class="text-display-lg-mobile md:text-display-lg font-display-lg mb-6">Ready to transform your farm?</h2>
+<p class="text-body-lg mb-10 max-w-2xl mx-auto opacity-90">Join thousands of progressive farmers in Bangladesh who are already using AgriSense AI to secure their future.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<a class="px-8 py-4 bg-white text-primary rounded-xl font-headline-md hover:scale-105 transition-transform flex items-center justify-center gap-2" href="#">
+                                Download Mobile App
+                            </a>
+<a class="px-8 py-4 border-2 border-white/30 text-white rounded-xl font-headline-md hover:bg-white/10 transition-all" href="#">
+                                Open Web Dashboard
+                            </a>
+</div>
+</div>
+<!-- Background Decoration -->
+<div class="absolute top-0 left-0 w-64 h-64 bg-primary/20 rounded-full blur-[100px]"></div>
+<div class="absolute bottom-0 right-0 w-64 h-64 bg-secondary/20 rounded-full blur-[100px]"></div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low w-full py-xl mt-xl border-t border-outline-variant">
+<div class="max-w-7xl mx-auto px-margin flex flex-col md:flex-row justify-between items-start md:items-center gap-base">
+<div class="space-y-4 mb-8 md:mb-0">
+<h2 class="text-headline-md font-headline-md font-bold text-primary">AgriSense AI</h2>
+<p class="text-body-md text-on-surface-variant max-w-xs">
+                    Empowering Bangladeshi Farmers through Precision Artificial Intelligence and Real-time Data.
+                </p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">
+                    © 2024 AgriSense AI. All rights reserved.
+                </p>
+</div>
+<div class="grid grid-cols-2 gap-12 sm:gap-24">
+<div class="space-y-4">
+<h4 class="font-bold text-on-surface">Product</h4>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">Features</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">Success Stories</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">Pricing</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">Agricultural Guides</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-bold text-on-surface">Legal</h4>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">Terms of Service</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">Privacy Policy</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">Contact Support</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">Data Protection</a></li>
+</ul>
+</div>
+</div>
+</div>
+</footer>
+<!-- Bottom Nav for Mobile -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 pb-safe bg-surface/90 backdrop-blur-lg shadow-lg border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-2xl px-4 py-2 scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-sm-mobile font-label-sm-mobile">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="text-label-sm-mobile font-label-sm-mobile">History</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2" href="#">
+<span class="material-symbols-outlined">center_focus_strong</span>
+<span class="text-label-sm-mobile font-label-sm-mobile">AI Scan</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2" href="#">
+<span class="material-symbols-outlined">chat</span>
+<span class="text-label-sm-mobile font-label-sm-mobile">Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-label-sm-mobile font-label-sm-mobile">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interactions
+        document.querySelectorAll('button, a').forEach(elem => {
+            elem.addEventListener('mousedown', () => {
+                elem.style.transform = 'scale(0.98)';
+            });
+            elem.addEventListener('mouseup', () => {
+                elem.style.transform = '';
+            });
+            elem.addEventListener('mouseleave', () => {
+                elem.style.transform = '';
+            });
+        });
+
+        // Intersection Observer for fade-in effects
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section > div').forEach(el => {
+            el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+            observer.observe(el);
+        });
+    </script>
+</body></html>

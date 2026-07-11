@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AgriSense AI - Profile &amp; Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed-dim": "#ffb1c7",
+                      "surface-container-low": "#f3f3f5",
+                      "surface-dim": "#d9dadc",
+                      "on-background": "#1a1c1d",
+                      "on-secondary-fixed-variant": "#0c5216",
+                      "on-surface-variant": "#40493d",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-container": "#307231",
+                      "secondary-container": "#acf4a4",
+                      "on-surface": "#1a1c1d",
+                      "on-tertiary-container": "#ffedf0",
+                      "surface-variant": "#e2e2e4",
+                      "surface-container": "#eeeef0",
+                      "surface-container-highest": "#e2e2e4",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed-dim": "#91d78a",
+                      "surface-bright": "#f9f9fb",
+                      "on-secondary": "#ffffff",
+                      "outline-variant": "#bfcaba",
+                      "primary-fixed": "#a3f69c",
+                      "on-error-container": "#93000a",
+                      "on-primary-container": "#cbffc2",
+                      "inverse-primary": "#88d982",
+                      "secondary": "#2a6b2c",
+                      "surface-tint": "#1b6d24",
+                      "surface-container-high": "#e8e8ea",
+                      "surface-container-lowest": "#ffffff",
+                      "outline": "#707a6c",
+                      "error-container": "#ffdad6",
+                      "on-error": "#ffffff",
+                      "primary-fixed-dim": "#88d982",
+                      "surface": "#f9f9fb",
+                      "on-primary-fixed": "#002204",
+                      "on-secondary-fixed": "#002203",
+                      "primary-container": "#2e7d32",
+                      "background": "#f9f9fb",
+                      "inverse-on-surface": "#f0f0f2",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed-variant": "#005312",
+                      "on-tertiary-fixed-variant": "#7f2448",
+                      "inverse-surface": "#2f3132",
+                      "secondary-fixed": "#acf4a4",
+                      "primary": "#0d631b",
+                      "tertiary": "#923357",
+                      "on-tertiary-fixed": "#3f001c",
+                      "tertiary-fixed": "#ffd9e2",
+                      "tertiary-container": "#b14b6f"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sm": "16px",
+                      "xs": "8px",
+                      "base": "4px",
+                      "md": "24px",
+                      "gutter": "24px",
+                      "lg": "40px",
+                      "margin": "32px",
+                      "xl": "64px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "display-lg-mobile": ["Inter"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-sm": ["13px", {"lineHeight": "16px", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-sm h-20">
+<div class="flex justify-between items-center w-full px-margin h-full max-w-7xl mx-auto">
+<div class="flex items-center gap-base">
+<span class="text-headline-md font-headline-md font-bold text-primary">AgriSense AI</span>
+</div>
+<nav class="hidden md:flex gap-md items-center">
+<a class="text-on-surface-variant hover:text-primary transition-colors text-body-md font-body-md" href="#">Dashboard</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-body-md font-body-md" href="#">History</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-body-md font-body-md" href="#">Chat</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 text-body-md font-body-md" href="#">Profile</a>
+</nav>
+<div class="flex items-center gap-sm">
+<button class="p-base hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<button class="p-base hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged Bangladeshi farmer named Abdul Karim, with a friendly expression, set against a blurred lush green agricultural background. The lighting is soft and natural, reflecting a bright morning. The overall aesthetic is high-quality, modern, and clean, consistent with a premium AI SaaS platform's profile section." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKpt-P8RkGfmdJ4LwrfEpw75UpZ2_fRybrEgV1PL6Gx3TIM7MB-4ikf7fsZfY4XFScSTJ-q_xq_0hATJlHktGUBwxkHhcUtttdmUz5cTTnlFUQu2wzVO6TqyhU9bH5KfMC6eSyMpbn6P9Tl7Pb5yL8otnZKYf5nRo6p9RrY-zIdb0Tb5KRjw5uHVYfUPOVgigF-P2zoYM96ZJw8nDXS0BXAECoGxCRqdSkse7qEY3Moqis-GjVkKpvlA"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-xl px-margin max-w-7xl mx-auto">
+<div class="flex flex-col lg:flex-row gap-lg">
+<!-- Left Sidebar / Navigation Selection -->
+<aside class="lg:w-1/4 flex flex-col gap-base">
+<h2 class="text-headline-md font-headline-md mb-md">Settings</h2>
+<nav class="flex flex-col gap-base">
+<a class="bg-secondary-container text-on-secondary-container rounded-xl font-bold px-4 py-3 flex items-center gap-3" href="#profile">
+<span class="material-symbols-outlined">person</span>
+<span class="text-label-sm font-label-sm">Profile Info</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-all px-4 py-3 flex items-center gap-3" href="#farms">
+<span class="material-symbols-outlined">agriculture</span>
+<span class="text-label-sm font-label-sm">Saved Farms</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-all px-4 py-3 flex items-center gap-3" href="#notifications">
+<span class="material-symbols-outlined">notifications</span>
+<span class="text-label-sm font-label-sm">Notifications</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-all px-4 py-3 flex items-center gap-3" href="#security">
+<span class="material-symbols-outlined">security</span>
+<span class="text-label-sm font-label-sm">Security &amp; Privacy</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-all px-4 py-3 flex items-center gap-3" href="#support">
+<span class="material-symbols-outlined">help_center</span>
+<span class="text-label-sm font-label-sm">Help &amp; Support</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<section class="lg:w-3/4 space-y-lg">
+<!-- Profile Information Card -->
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-[0px_4px_20px_rgba(0,0,0,0.04)]" id="profile">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="text-headline-md font-headline-md text-primary">Profile Information</h3>
+<p class="text-on-surface-variant text-body-md font-body-md">Manage your personal details and account preferences.</p>
+</div>
+<button class="bg-primary text-on-primary px-sm py-xs rounded-xl flex items-center gap-xs hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+<span class="text-label-sm font-label-sm">Edit Profile</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="space-y-base">
+<label class="text-label-sm font-label-sm text-outline uppercase tracking-wider">Full Name</label>
+<p class="text-body-lg font-body-lg text-on-surface font-semibold">Abdul Karim</p>
+</div>
+<div class="space-y-base">
+<label class="text-label-sm font-label-sm text-outline uppercase tracking-wider">District</label>
+<div class="flex items-center gap-xs text-on-surface font-semibold">
+<span class="material-symbols-outlined text-primary text-[20px]">location_on</span>
+<p class="text-body-lg font-body-lg">Bogura, Bangladesh</p>
+</div>
+</div>
+<div class="space-y-base">
+<label class="text-label-sm font-label-sm text-outline uppercase tracking-wider">Preferred Language</label>
+<p class="text-body-lg font-body-lg text-on-surface font-semibold">Bengali (বাংলা)</p>
+</div>
+<div class="space-y-base">
+<label class="text-label-sm font-label-sm text-outline uppercase tracking-wider">Membership Status</label>
+<div class="inline-flex items-center bg-secondary-container/50 text-secondary px-sm py-1 rounded-full border border-secondary-container">
+<span class="text-label-sm font-label-sm font-bold">Pro Farmer</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Saved Farms Bento Section -->
+<div class="space-y-md" id="farms">
+<h3 class="text-headline-md font-headline-md text-primary">Saved Farms</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Map Card -->
+<div class="md:col-span-2 relative h-64 rounded-xl overflow-hidden shadow-sm border border-outline-variant">
+<div class="absolute inset-0 bg-neutral-100" data-location="Bogura, Bangladesh" style="">
+<img class="w-full h-full object-cover" data-alt="A high-resolution satellite map view of a lush green agricultural landscape in Bogura, Bangladesh. The image shows neatly partitioned farmland with varying shades of vibrant green crops, interspersed with small clusters of trees and a few rural dwellings. The style is detailed and professional, with a modern digital overlay showing subtle plot boundaries. The overall aesthetic is bright, clear, and high-tech." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqyL5TkR9zn_yjwDettTQYIMtPZ9z-p0n8T7H6XUEQrtmrovGGhAdcBighg79hrR4X0F6kdtHmg5DIhlAiMjZ6ZRaIzt2LwRPdjyOYs8eqdtjuwLMJ4n0aTbhC1S4-izWiBG34ZgikD3VS1qSxuVnB2L_abeSP80EsTta6gD0kxLULw9Nh7fQky_DLfiL7nR9bNxnuXwIMbENbMe0ifTIT-X5TL35jJjPsKHWttu5yrGwDIyeP9CKqeQ"/>
+</div>
+<div class="absolute bottom-md left-md bg-surface/90 backdrop-blur-md p-sm rounded-xl border border-outline-variant max-w-xs shadow-lg">
+<div class="flex items-center gap-sm">
+<div class="bg-primary-container p-xs rounded-lg text-on-primary-container">
+<span class="material-symbols-outlined">agriculture</span>
+</div>
+<div>
+<h4 class="text-label-sm font-label-sm">Karim Homestead Farm</h4>
+<p class="text-[12px] text-on-surface-variant">Last scanned: 2 hours ago</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Farm Stats Card -->
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-sm flex flex-col justify-center gap-md">
+<div class="text-center">
+<p class="text-label-sm font-label-sm text-outline uppercase">Total Area</p>
+<p class="text-display-lg font-display-lg text-primary">4.2<span class="text-headline-md">ac</span></p>
+</div>
+<div class="border-t border-outline-variant pt-md space-y-sm">
+<div class="flex justify-between items-center">
+<span class="text-body-md font-body-md text-on-surface-variant">Crops</span>
+<span class="text-label-sm font-label-sm bg-surface-container text-on-surface-variant px-xs py-1 rounded">Rice, Potato</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-body-md font-body-md text-on-surface-variant">Health</span>
+<span class="text-label-sm font-label-sm text-secondary">Optimal</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Notifications & Preferences -->
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-sm" id="notifications">
+<h3 class="text-headline-md font-headline-md text-primary mb-md">Notification Preferences</h3>
+<div class="space-y-sm">
+<!-- Toggle Item -->
+<div class="flex items-center justify-between py-sm border-b border-outline-variant last:border-0">
+<div class="flex items-center gap-md">
+<div class="bg-surface-container p-sm rounded-xl text-primary">
+<span class="material-symbols-outlined">cloud</span>
+</div>
+<div>
+<p class="text-body-lg font-body-lg font-semibold">Weather Alerts</p>
+<p class="text-body-md font-body-md text-on-surface-variant">Real-time storm and rainfall warnings for Bogura.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Toggle Item -->
+<div class="flex items-center justify-between py-sm border-b border-outline-variant last:border-0">
+<div class="flex items-center gap-md">
+<div class="bg-surface-container p-sm rounded-xl text-primary">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<div>
+<p class="text-body-lg font-body-lg font-semibold">Market Updates</p>
+<p class="text-body-md font-body-md text-on-surface-variant">Daily price changes for major crops in local hubs.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Toggle Item -->
+<div class="flex items-center justify-between py-sm border-b border-outline-variant last:border-0">
+<div class="flex items-center gap-md">
+<div class="bg-surface-container p-sm rounded-xl text-primary">
+<span class="material-symbols-outlined">psychology</span>
+</div>
+<div>
+<p class="text-body-lg font-body-lg font-semibold">AI Insights</p>
+<p class="text-body-md font-body-md text-on-surface-variant">Personalized crop health and harvesting recommendations.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+<!-- Security & Support -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md" id="security">
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-md mb-sm">
+<div class="bg-tertiary-fixed-dim/20 p-sm rounded-xl text-tertiary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<h4 class="text-body-lg font-body-lg font-bold">Security Center</h4>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant mb-md">Manage passwords, biometric logins, and multi-factor authentication.</p>
+<button class="text-primary font-bold flex items-center gap-base hover:underline">
+                            Go to Security Settings <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-sm hover:shadow-md transition-shadow" id="support">
+<div class="flex items-center gap-md mb-sm">
+<div class="bg-primary-fixed/20 p-sm rounded-xl text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">contact_support</span>
+</div>
+<h4 class="text-body-lg font-body-lg font-bold">Customer Support</h4>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant mb-md">Need help with analysis? Our experts are available 24/7 for you.</p>
+<button class="text-primary font-bold flex items-center gap-base hover:underline">
+                            Start Chat with Expert <span class="material-symbols-outlined">forum</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-outline-variant w-full py-xl">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin max-w-7xl mx-auto gap-base">
+<div class="text-center md:text-left">
+<span class="text-headline-md font-headline-md font-bold text-primary">AgriSense AI</span>
+<p class="text-body-md font-body-md text-on-surface-variant mt-xs">© 2024 AgriSense AI. Empowering Bangladeshi Farmers through Precision.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm font-label-sm" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm font-label-sm" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm font-label-sm" href="#">Contact Support</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm font-label-sm" href="#">Agricultural Guides</a>
+</div>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 pb-safe bg-surface/90 backdrop-blur-lg shadow-lg rounded-t-xl">
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 active:bg-surface-container-high transition-transform active:scale-95">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-semibold mt-1">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 active:bg-surface-container-high transition-transform active:scale-95">
+<span class="material-symbols-outlined">history</span>
+<span class="text-[10px] font-semibold mt-1">History</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 active:bg-surface-container-high transition-transform active:scale-95">
+<span class="material-symbols-outlined">center_focus_strong</span>
+<span class="text-[10px] font-semibold mt-1">AI Scan</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 active:bg-surface-container-high transition-transform active:scale-95">
+<span class="material-symbols-outlined">chat</span>
+<span class="text-[10px] font-semibold mt-1">Chat</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-2xl px-4 py-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-semibold mt-1">Profile</span>
+</button>
+</nav>
+<script>
+        // Simple Interaction: Switch active nav (Visual only)
+        const asideLinks = document.querySelectorAll('aside nav a');
+        asideLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                asideLinks.forEach(l => {
+                    l.classList.remove('bg-secondary-container', 'text-on-secondary-container', 'font-bold');
+                    l.classList.add('text-on-surface-variant', 'hover:bg-surface-container-high');
+                });
+                link.classList.add('bg-secondary-container', 'text-on-secondary-container', 'font-bold');
+                link.classList.remove('text-on-surface-variant', 'hover:bg-surface-container-high');
+            });
+        });
+
+        // Toggle Switch Animation Logic (Visual Polish)
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const parent = this.closest('label');
+                if (this.checked) {
+                    parent.classList.add('scale-105');
+                } else {
+                    parent.classList.remove('scale-105');
+                }
+                setTimeout(() => parent.classList.remove('scale-105'), 200);
+            });
+        });
+    </script>
+</body></html>
