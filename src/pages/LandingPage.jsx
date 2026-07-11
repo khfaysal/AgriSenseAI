@@ -124,9 +124,9 @@ function Navbar() {
         ))}
         <Link className="nav-link nav-cta" to="/app">Get Started</Link>
       </div>
-      <button className="mobile-menu-btn" aria-label="Toggle menu">
-        <span /><span /><span />
-      </button>
+      <Link className="nav-link nav-cta mobile-get-started" to="/app">
+        Get Started
+      </Link>
     </nav>
   )
 }
