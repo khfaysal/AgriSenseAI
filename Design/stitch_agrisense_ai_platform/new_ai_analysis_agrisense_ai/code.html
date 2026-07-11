@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Analyze with AI - AgriSense AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#ffb1c7",
+                        "surface-container-low": "#f3f3f5",
+                        "surface-dim": "#d9dadc",
+                        "on-background": "#1a1c1d",
+                        "on-secondary-fixed-variant": "#0c5216",
+                        "on-surface-variant": "#40493d",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#307231",
+                        "secondary-container": "#acf4a4",
+                        "on-surface": "#1a1c1d",
+                        "on-tertiary-container": "#ffedf0",
+                        "surface-variant": "#e2e2e4",
+                        "surface-container": "#eeeef0",
+                        "surface-container-highest": "#e2e2e4",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#91d78a",
+                        "surface-bright": "#f9f9fb",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#bfcaba",
+                        "primary-fixed": "#a3f69c",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#cbffc2",
+                        "inverse-primary": "#88d982",
+                        "secondary": "#2a6b2c",
+                        "surface-tint": "#1b6d24",
+                        "surface-container-high": "#e8e8ea",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#707a6c",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#88d982",
+                        "surface": "#f9f9fb",
+                        "on-primary-fixed": "#002204",
+                        "on-secondary-fixed": "#002203",
+                        "primary-container": "#2e7d32",
+                        "background": "#f9f9fb",
+                        "inverse-on-surface": "#f0f0f2",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#005312",
+                        "on-tertiary-fixed-variant": "#7f2448",
+                        "inverse-surface": "#2f3132",
+                        "secondary-fixed": "#acf4a4",
+                        "primary": "#0d631b",
+                        "tertiary": "#923357",
+                        "on-tertiary-fixed": "#3f001c",
+                        "tertiary-fixed": "#ffd9e2",
+                        "tertiary-container": "#b14b6f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "16px",
+                        "xs": "8px",
+                        "base": "4px",
+                        "md": "24px",
+                        "gutter": "24px",
+                        "lg": "40px",
+                        "margin": "32px",
+                        "xl": "64px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "display-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-sm": ["13px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(27, 109, 36, 0.1);
+            border-color: #0d631b !important;
+        }
+        .drag-active {
+            border-color: #0d631b !important;
+            background-color: #f0fdf4 !important;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 glass-nav shadow-sm h-20">
+<div class="flex justify-between items-center w-full px-margin h-full max-w-7xl mx-auto">
+<div class="flex items-center gap-2">
+<span class="text-headline-md font-headline-md font-bold text-primary">AgriSense AI</span>
+</div>
+<nav class="hidden md:flex items-center gap-lg">
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">History</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">Chat</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md" href="#">Analysis</a>
+</nav>
+<div class="flex items-center gap-md">
+<button class="p-base rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional high-quality headshot of a smiling agricultural expert in a clean laboratory setting, wearing a modern tech-integrated vest. The background is a soft-focus indoor vertical farm with glowing green LED lights, following a premium, bright, and airy light-mode aesthetic with natural emerald and white tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXz8rsoCwjd4qGQlnDB4KW5JWBriSG8uYcuBXLi8obRtyjFj7fo2k6Ddv8OjxlFw-2VWDrHfXKecUaH9WYThzByHpg58o3mxzxfmYoatpOJQZ6tz88cEHhSnF3HG5qPGCUTM6sxA_SEiGZFq-n_zAvLNmobzZ3SK1UM_92aouskPkgT46IB30x4Y5-8UezSFgd8xFNzsSybZaUhnHp0An4aOLHDGPAI5vCAnk2EzT5YGBoTn-ZsN8ErQ"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-xl px-margin max-w-5xl mx-auto">
+<!-- Header Section -->
+<section class="mb-xl text-center md:text-left">
+<h1 class="text-display-lg-mobile md:text-display-lg font-display-lg text-on-background mb-base">New AI Crop Analysis</h1>
+<p class="text-body-lg text-on-surface-variant max-w-2xl">Upload a photo of your crop or soil issue to get instant expert guidance powered by precision AI models.</p>
+</section>
+<form class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
+<!-- Left Column: Media Upload -->
+<div class="lg:col-span-7 space-y-md">
+<div class="relative group bg-surface-container-lowest border-2 border-dashed border-outline-variant rounded-xl p-xl flex flex-col items-center justify-center transition-all duration-300 hover:border-primary" id="drop-zone">
+<div class="w-16 h-16 bg-secondary-container rounded-full flex items-center justify-center mb-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-secondary-container text-4xl">cloud_upload</span>
+</div>
+<div class="text-center">
+<p class="font-headline-md text-on-surface mb-xs">Drag and drop images</p>
+<p class="text-label-sm text-on-surface-variant mb-md">Supported formats: JPG, PNG, WEBP (Max 10MB)</p>
+</div>
+<label class="cursor-pointer bg-primary text-on-primary px-md py-sm rounded-full font-label-sm hover:opacity-90 transition-opacity">
+                        Browse Files
+                        <input accept="image/*" class="hidden" id="image-upload" type="file"/>
+</label>
+<div class="hidden absolute inset-0 bg-surface rounded-xl overflow-hidden p-base" id="preview-container">
+<img class="w-full h-full object-contain rounded-lg" id="image-preview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQ1VIoYBCnQz369sx2K_Uah_cbH6oFZ7JJ43K88fDMiy4NmG7UvxrYoRW1z3L6_vYPq_3ukEjCGdVdA4zKq_dRFSrwPkXsJ5ZBV6rF3BoRmIsN5haT8szZmUHPo3X5QxE_VhhBtNQbzbRd8oozlHnA2tzmWVpw09MW85A7FnuvdnjonBKXVCUwr4fXmirBEERQ2ZvTFUytMTLh86-wEpTLZB57bSj0GLc5sr7ke_9v-3bm-ucDwuHJtQ"/>
+<button class="absolute top-4 right-4 bg-error text-on-error p-base rounded-full shadow-lg" id="remove-image" type="button">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="flex-1 flex items-center justify-center gap-xs py-md border-2 border-primary text-primary rounded-xl font-label-sm hover:bg-primary/5 transition-colors" type="button">
+<span class="material-symbols-outlined">photo_camera</span>
+                        Capture from Camera
+                    </button>
+</div>
+<!-- Helpful Tip -->
+<div class="bg-tertiary-fixed text-on-tertiary-fixed-variant p-md rounded-xl flex items-start gap-md">
+<span class="material-symbols-outlined mt-1">lightbulb</span>
+<p class="text-body-md">Providing both a clear image and a detailed description significantly improves AI diagnosis accuracy by up to 40%.</p>
+</div>
+</div>
+<!-- Right Column: Form Details -->
+<div class="lg:col-span-5 space-y-md">
+<div class="space-y-base">
+<label class="text-label-sm text-on-surface-variant ml-base">Problem Description</label>
+<textarea class="w-full bg-surface-container-lowest border-outline-variant rounded-xl p-md text-body-md transition-all resize-none" placeholder="Describe the symptoms you're seeing (e.g., yellow spots on leaves, wilting, insect presence)..." rows="5"></textarea>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div class="space-y-base">
+<label class="text-label-sm text-on-surface-variant ml-base">Crop Type</label>
+<select class="w-full bg-surface-container-lowest border-outline-variant rounded-xl p-md text-body-md appearance-none">
+<option value="">Select Crop</option>
+<option>Rice</option>
+<option>Jute</option>
+<option>Wheat</option>
+<option>Mango</option>
+</select>
+</div>
+<div class="space-y-base">
+<label class="text-label-sm text-on-surface-variant ml-base">Season</label>
+<select class="w-full bg-surface-container-lowest border-outline-variant rounded-xl p-md text-body-md appearance-none">
+<option value="">Select Season</option>
+<option>Kharif-1</option>
+<option>Kharif-2</option>
+<option>Rabi</option>
+</select>
+</div>
+</div>
+<div class="space-y-base">
+<label class="text-label-sm text-on-surface-variant ml-base">District</label>
+<select class="w-full bg-surface-container-lowest border-outline-variant rounded-xl p-md text-body-md appearance-none">
+<option value="">Select District</option>
+<option>Dhaka</option>
+<option>Rajshahi</option>
+<option>Sylhet</option>
+<option>Khulna</option>
+</select>
+</div>
+<div class="flex items-center justify-between p-md bg-surface-container rounded-xl">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span class="text-label-sm text-on-surface">Auto Detect Location</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="pt-md">
+<button class="w-full bg-primary text-on-primary py-xl rounded-xl font-headline-md flex items-center justify-center gap-md shadow-lg hover:scale-[1.02] active:scale-95 transition-all" type="submit">
+<span class="material-symbols-outlined">bolt</span>
+                        Analyze with AI
+                    </button>
+</div>
+</div>
+</form>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-outline-variant py-xl mt-xl">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin max-w-7xl mx-auto gap-base">
+<div class="flex flex-col items-center md:items-start gap-xs">
+<span class="text-headline-md font-headline-md font-bold text-primary">AgriSense AI</span>
+<p class="text-body-md text-on-surface-variant text-center md:text-left">© 2024 AgriSense AI. Empowering Bangladeshi Farmers through Precision.</p>
+</div>
+<div class="flex gap-lg mt-md md:mt-0">
+<a class="text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 pb-safe bg-surface/90 glass-nav shadow-lg rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="text-label-sm">History</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-2xl px-4 py-2 scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">center_focus_strong</span>
+<span class="text-label-sm">AI Scan</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2" href="#">
+<span class="material-symbols-outlined">chat</span>
+<span class="text-label-sm">Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple Interaction Logic
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('image-upload');
+        const previewContainer = document.getElementById('preview-container');
+        const imagePreview = document.getElementById('image-preview');
+        const removeBtn = document.getElementById('remove-image');
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                dropZone.classList.add('drag-active');
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('drag-active');
+            }, false);
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            handleFiles(files);
+        });
+
+        fileInput.addEventListener('change', function() {
+            handleFiles(this.files);
+        });
+
+        function handleFiles(files) {
+            if (files && files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    previewContainer.classList.remove('hidden');
+                }
+                reader.readAsDataURL(files[0]);
+            }
+        }
+
+        removeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            previewContainer.classList.add('hidden');
+            imagePreview.src = '#';
+            fileInput.value = '';
+        });
+
+        // Form Submission Micro-interaction
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            btn.innerHTML = '<span class="animate-spin material-symbols-outlined">progress_activity</span> Processing...';
+            btn.style.opacity = '0.7';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Analysis Complete';
+                btn.classList.replace('bg-primary', 'bg-secondary');
+            }, 2000);
+        });
+    </script>
+</body></html>

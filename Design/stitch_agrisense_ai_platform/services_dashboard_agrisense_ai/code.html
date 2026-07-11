@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AgriSense AI - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .hover-lift {
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0px 10px 32px rgba(0, 0, 0, 0.08);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed-dim": "#ffb1c7",
+                      "surface-container-low": "#f3f3f5",
+                      "surface-dim": "#d9dadc",
+                      "on-background": "#1a1c1d",
+                      "on-secondary-fixed-variant": "#0c5216",
+                      "on-surface-variant": "#40493d",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-container": "#307231",
+                      "secondary-container": "#acf4a4",
+                      "on-surface": "#1a1c1d",
+                      "on-tertiary-container": "#ffedf0",
+                      "surface-variant": "#e2e2e4",
+                      "surface-container": "#eeeef0",
+                      "surface-container-highest": "#e2e2e4",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed-dim": "#91d78a",
+                      "surface-bright": "#f9f9fb",
+                      "on-secondary": "#ffffff",
+                      "outline-variant": "#bfcaba",
+                      "primary-fixed": "#a3f69c",
+                      "on-error-container": "#93000a",
+                      "on-primary-container": "#cbffc2",
+                      "inverse-primary": "#88d982",
+                      "secondary": "#2a6b2c",
+                      "surface-tint": "#1b6d24",
+                      "surface-container-high": "#e8e8ea",
+                      "surface-container-lowest": "#ffffff",
+                      "outline": "#707a6c",
+                      "error-container": "#ffdad6",
+                      "on-error": "#ffffff",
+                      "primary-fixed-dim": "#88d982",
+                      "surface": "#f9f9fb",
+                      "on-primary-fixed": "#002204",
+                      "on-secondary-fixed": "#002203",
+                      "primary-container": "#2e7d32",
+                      "background": "#f9f9fb",
+                      "inverse-on-surface": "#f0f0f2",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed-variant": "#005312",
+                      "on-tertiary-fixed-variant": "#7f2448",
+                      "inverse-surface": "#2f3132",
+                      "secondary-fixed": "#acf4a4",
+                      "primary": "#0d631b",
+                      "tertiary": "#923357",
+                      "on-tertiary-fixed": "#3f001c",
+                      "tertiary-fixed": "#ffd9e2",
+                      "tertiary-container": "#b14b6f"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sm": "16px",
+                      "xs": "8px",
+                      "base": "4px",
+                      "md": "24px",
+                      "gutter": "24px",
+                      "lg": "40px",
+                      "margin": "32px",
+                      "xl": "64px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "display-lg-mobile": ["Inter"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-sm": ["13px", {"lineHeight": "16px", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background font-body-md text-on-surface overflow-x-hidden">
+<!-- Mobile Navigation (Top Bar) -->
+<header class="md:hidden flex justify-between items-center w-full px-margin h-20 fixed top-0 z-50 bg-surface/80 backdrop-blur-xl shadow-sm">
+<span class="text-headline-md font-headline-md font-bold text-primary">AgriSense AI</span>
+<div class="flex gap-4">
+<button class="material-symbols-outlined text-on-surface-variant">notifications</button>
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container text-body-md">person</span>
+</div>
+</div>
+</header>
+<!-- SideNavBar (Desktop Only) -->
+<aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface border-r border-outline-variant p-4 gap-2 z-40">
+<div class="flex flex-col mb-xl px-2">
+<span class="text-headline-md font-headline-md font-bold text-primary">AgriSense AI</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Expert Partner</span>
+</div>
+<nav class="flex flex-col gap-2">
+<!-- Active State Navigation -->
+<a class="bg-secondary-container text-on-secondary-container rounded-xl font-bold px-4 py-3 flex items-center gap-3 transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-sm font-label-sm">Home</span>
+</a>
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 rounded-xl hover:bg-surface-container transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">analytics</span>
+<span class="text-label-sm font-label-sm group-hover:text-primary">Analysis</span>
+</a>
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 rounded-xl hover:bg-surface-container transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">storefront</span>
+<span class="text-label-sm font-label-sm group-hover:text-primary">Market</span>
+</a>
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 rounded-xl hover:bg-surface-container transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">history</span>
+<span class="text-label-sm font-label-sm group-hover:text-primary">History</span>
+</a>
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 rounded-xl hover:bg-surface-container transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">chat</span>
+<span class="text-label-sm font-label-sm group-hover:text-primary">Support</span>
+</a>
+</nav>
+<div class="mt-auto">
+<button class="w-full bg-primary text-on-primary py-3 px-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+<span class="text-label-sm font-label-sm">New Analysis</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 pt-24 md:pt-margin px-margin pb-32">
+<!-- Welcome Header -->
+<header class="max-w-7xl mx-auto mb-xl">
+<div class="flex flex-col gap-2">
+<h1 class="text-display-lg-mobile md:text-display-lg font-display-lg text-on-surface">Precision Farming Dashboard</h1>
+<p class="text-body-lg text-on-surface-variant max-w-2xl">Leverage AI-driven insights to maximize your harvest. Select a service to begin your data-backed journey.</p>
+</div>
+</header>
+<!-- Service Bento Grid -->
+<div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Crop Recommendation -->
+<div class="glass-card hover-lift rounded-xl p-md flex flex-col gap-md relative overflow-hidden group">
+<div class="w-full h-40 bg-surface-container-low rounded-lg overflow-hidden relative">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent"></div>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A lush green rice field in Bangladesh, shot with high-end architectural photography style. The lighting is soft morning sun, emphasizing golden hour hues and deep emerald greens. Minimalist composition with a focus on vibrant, healthy crop growth and precision agriculture aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCibO-Go2DNBqwXf5dOyYr5clDS19b2gwImIoiYdUEyrX76VC9QWWfO2g3wwy3KTMKs5W6Mp5tpFH-nUktbH6WxWH0iLU3R6TpCWyvSnAyPj5-XnxDzRBomcwWUGUOnMJYmUTe6z9onl7fNYEKB8nc75PHCDwn1Ht5uG05sTEI2fqAU6G7thZyfigeIMWBcopBdfuWGb4UQ0X3FgpX59GRhGlIBLt-cVlRxIK_4nc7YrCV9PWYbxnxPPQ"/>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-secondary-container/50 p-3 rounded-xl text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div>
+<h3 class="text-headline-md font-headline-md text-on-surface">Crop Recommendation</h3>
+<p class="text-body-md text-on-surface-variant mt-1">AI suggestions based on soil and climate conditions.</p>
+</div>
+</div>
+<button class="mt-auto w-full border border-primary text-primary py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-primary hover:text-on-primary transition-all">
+<span class="text-label-sm font-label-sm">Start Analysis</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<!-- Disease Detection -->
+<div class="glass-card hover-lift rounded-xl p-md flex flex-col gap-md relative overflow-hidden group">
+<div class="w-full h-40 bg-surface-container-low rounded-lg overflow-hidden relative">
+<div class="absolute inset-0 bg-gradient-to-br from-error/5 to-transparent"></div>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Close up high-definition macro photography of a plant leaf with subtle pest damage markers being analyzed by a digital scanning overlay. The lighting is bright and scientific, using clean white studio tones with clinical green accents. The aesthetic is modern and high-tech." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIstbWcRfbFNmSTQcPsEzHf0SFMHR0Y7HrwvDcvh6jGd5quJBDC7louQ2E1_rLuSuRDpQWnzHrmoLjlKmS1DoAysmzL-uR6Mis611xbUEfQOEvY1UshhojiuaXYqUe270Owsn-aOZtcbjof6R0ofe0grTkVR5rYLagW_hcOiXv1yGeZgq9tbOBSofiUUuAelVYi0nYdTrdsufDgxE20WzLWs6G0oxSh0GiWZ8NycbQ-39G2mfZnOJV9Q"/>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-error-container/30 p-3 rounded-xl text-error">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">scan</span>
+</div>
+<div>
+<h3 class="text-headline-md font-headline-md text-on-surface">Disease Detection</h3>
+<p class="text-body-md text-on-surface-variant mt-1">Upload leaf photos to identify pests and diseases instantly.</p>
+</div>
+</div>
+<button class="mt-auto w-full border border-primary text-primary py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-primary hover:text-on-primary transition-all">
+<span class="text-label-sm font-label-sm">Start Analysis</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<!-- Fertilizer Recommendation -->
+<div class="glass-card hover-lift rounded-xl p-md flex flex-col gap-md relative overflow-hidden group">
+<div class="w-full h-40 bg-surface-container-low rounded-lg overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Minimalist abstract representation of soil nutrients. Stylized spheres representing chemical elements in shades of white, gold, and earthy greens floating in a clean, brightly lit space. The style is premium SaaS 3D render, reflecting precision and scientific accuracy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnFZyHdIgkrSM7RWow2uAi32oCRcT56oa5tWOBxQ6WIJ3uE2cEweD7S9EYxZ88NHfFVsatIrstlgXjCxTFo2CH7HW33JCmtywape37oIW5MCs7xlXOkya7cV6SBMPaCTIdO3m_X7o6V5GZdfICZkOL96Bm1r35s8kG5TtRxkFYYp34AwKEDQAYVs58jvaAFfVQQCROTbted_Hg5kwNyPREHwEV_hd90fyeC2zddn0uSJKGsmmByFmYww"/>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-tertiary-fixed/30 p-3 rounded-xl text-tertiary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">science</span>
+</div>
+<div>
+<h3 class="text-headline-md font-headline-md text-on-surface">Fertilizer Recommendation</h3>
+<p class="text-body-md text-on-surface-variant mt-1">Optimize NPK levels for your specific land plot.</p>
+</div>
+</div>
+<button class="mt-auto w-full border border-primary text-primary py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-primary hover:text-on-primary transition-all">
+<span class="text-label-sm font-label-sm">Start Analysis</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<!-- Irrigation Recommendation -->
+<div class="glass-card hover-lift rounded-xl p-md flex flex-col gap-md relative overflow-hidden group">
+<div class="w-full h-40 bg-surface-container-low rounded-lg overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Cinematic shot of a modern drip irrigation system in a sun-drenched field. Water droplets glisten like diamonds against deep green plants. High-key lighting, soft focus background, ultra-clean agricultural technology aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcekrT5GDqnEpaDgVcIwtxdwAzOWq3mU5BQUUI-EBfBtBmKDBbAtNjRLPY6eJFTMwg2AQ7duHlxUA6xUV8ZgdpimOz2VjvuvgUo8nO_xh2jrR0DWZafphTDoDZjcvdB5o5G9bDA7kjjOp3e4xUxXN_o4NfgE0ijkgY8b5oS2W8DjPhTxMIbmC1j0MTEnXajQOfmLwaIaIJrbUoN7hTiRo1OV6YIBjaqr2J44QXEVw1yzYaayjlHf_ffg"/>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-blue-100 p-3 rounded-xl text-blue-600">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+</div>
+<div>
+<h3 class="text-headline-md font-headline-md text-on-surface">Irrigation Recommendation</h3>
+<p class="text-body-md text-on-surface-variant mt-1">Water conservation strategies based on real-time soil moisture.</p>
+</div>
+</div>
+<button class="mt-auto w-full border border-primary text-primary py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-primary hover:text-on-primary transition-all">
+<span class="text-label-sm font-label-sm">Start Analysis</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<!-- Weather Advisory -->
+<div class="glass-card hover-lift rounded-xl p-md flex flex-col gap-md relative overflow-hidden group">
+<div class="w-full h-40 bg-surface-container-low rounded-lg overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A serene landscape showing the transition from a storm cloud to clear blue sky over a rural plain. High-key, vibrant, and airy visual style. The lighting is ethereal and bright, using a palette of sky blue, white, and distant soft greens." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAdBna1_mw_x85sPUJUB2aDel2aLQhKLRGsD1ENb8wRhrAmvl1Lknp0APLOniBqJLs6qRU5bPfLNv_W1ikMwmgLu_lNjMNN6g9aXV7JA9lXQYOmG30UtLHSLWVHzR5qXCceWPe8qYyD3yqsG4RgRBycJxVCmVujQ_hciq7P7Z5dHA738xRVLXG2J8yt9wUCOXCHz8TjrOuIKJPvESE59ATHA-8sonNIGV2ret7b0I8DZh-Og17wSNXtQ"/>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-amber-100 p-3 rounded-xl text-amber-600">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">wb_sunny</span>
+</div>
+<div>
+<h3 class="text-headline-md font-headline-md text-on-surface">Weather Advisory</h3>
+<p class="text-body-md text-on-surface-variant mt-1">Local forecasts with actionable agricultural impact reports.</p>
+</div>
+</div>
+<button class="mt-auto w-full border border-primary text-primary py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-primary hover:text-on-primary transition-all">
+<span class="text-label-sm font-label-sm">Start Analysis</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<!-- Market Price Prediction -->
+<div class="glass-card hover-lift rounded-xl p-md flex flex-col gap-md relative overflow-hidden group">
+<div class="w-full h-40 bg-surface-container-low rounded-lg overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Abstract financial data visualization with glowing green lines ascending on a clean, light gray grid background. The style is premium fintech with a modern, minimalist vibe. High contrast and razor-sharp clarity, reflecting accuracy and wealth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnBD4wbjorudI40XLW30cc-D4EmxfRxXavIJUUOWRybJVFL1HBL2pQMk0ikdQpcSMEFYA2bqupuaMRArgZW8CUFtLHMW8sN1CFSrXzxcXloZlxf70t8ZWqzkiF2vx1wGhkC-cEBX9c2sKKrJixi7HbMLGxvL8djxH4Jx1yNP5-nirDG9hUxanF4Huw3j6eypCVTGvUFrPz1bigvURAxnCeU5cLJc_1gQjApS1f1he7hX6vi0CUYDZMVw"/>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-primary-fixed p-3 rounded-xl text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+</div>
+<div>
+<h3 class="text-headline-md font-headline-md text-on-surface">Market Price Prediction</h3>
+<p class="text-body-md text-on-surface-variant mt-1">Stay ahead with 7-day crop price forecasts and market trends.</p>
+</div>
+</div>
+<button class="mt-auto w-full border border-primary text-primary py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-primary hover:text-on-primary transition-all">
+<span class="text-label-sm font-label-sm">Start Analysis</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<!-- Bengali AI Assistant (Featured Large) -->
+<div class="glass-card hover-lift rounded-xl p-md flex flex-col lg:flex-row gap-gutter lg:col-span-3 items-center relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32"></div>
+<div class="w-full lg:w-1/3 h-48 bg-secondary-container/20 rounded-lg overflow-hidden relative flex items-center justify-center p-4">
+<img class="h-full object-contain group-hover:scale-110 transition-transform duration-500" data-alt="A friendly, minimalist robot character with clean white surfaces and soft green glowing light features. The background is a minimalist studio setting with soft shadows. The robot looks helpful and approachable, representing a modern AI assistant for farmers." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbvVKiAxZRnNjwil1xnWkJFnB7N-6R4p0LCEinjaG1axf0aUdCjxtXLHf2Ex4OypSzsltcavl-Ds3d5s07SlNT8IkCHaEVYYBqsWc99iZ-ajW0LHKf4hzKw186-sww32j3TVzOi0XjvF4QgDGIRd2fWctLzENN-NoZyF7-8bz8sxI_0WBR5tMB2CGbaToF5ojziQ4e6hkrxv2ildbzFe-t1X4aCiSocANzZq-RoLYHQWn7FG1CElv05Q"/>
+</div>
+<div class="flex-1 flex flex-col gap-md py-4">
+<div class="flex items-center gap-4">
+<div class="bg-primary p-3 rounded-xl text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<h3 class="text-display-lg-mobile md:text-headline-md font-headline-md text-on-surface">Bengali AI Assistant</h3>
+</div>
+<p class="text-body-lg text-on-surface-variant">Ask questions about farming, prices, or equipment in Bengali. Our expert AI is here to help you 24/7 with voice and text support.</p>
+<div class="flex gap-4 flex-wrap">
+<button class="bg-primary text-on-primary px-8 py-3 rounded-xl font-bold flex items-center gap-3 hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined">chat</span>
+<span>Start Chatting</span>
+</button>
+<button class="border border-primary text-primary px-8 py-3 rounded-xl font-bold flex items-center gap-3 hover:bg-primary/5 active:scale-95 transition-all">
+<span class="material-symbols-outlined">mic</span>
+<span>Voice Command</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 pb-safe bg-surface/90 backdrop-blur-lg shadow-lg border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-2xl px-4 py-2 transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-label-sm font-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 active:bg-surface-container-high rounded-2xl" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="text-label-sm font-label-sm">History</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 active:bg-surface-container-high rounded-2xl" href="#">
+<span class="material-symbols-outlined">center_focus_strong</span>
+<span class="text-label-sm font-label-sm">AI Scan</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 active:bg-surface-container-high rounded-2xl" href="#">
+<span class="material-symbols-outlined">chat</span>
+<span class="text-label-sm font-label-sm">Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 active:bg-surface-container-high rounded-2xl" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-label-sm font-label-sm">Profile</span>
+</a>
+</nav>
+<!-- Footer (Desktop) -->
+<footer class="hidden md:flex flex-col md:flex-row justify-between items-center px-margin max-w-7xl mx-auto py-xl mt-xl border-t border-outline-variant gap-base">
+<div class="flex flex-col gap-2">
+<span class="text-headline-md font-headline-md font-bold text-primary">AgriSense AI</span>
+<p class="text-body-md text-on-surface-variant">© 2024 AgriSense AI. Empowering Bangladeshi Farmers through Precision.</p>
+</div>
+<div class="flex gap-md">
+<a class="text-on-surface-variant text-label-sm font-label-sm hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-on-surface-variant text-label-sm font-label-sm hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant text-label-sm font-label-sm hover:text-primary transition-colors" href="#">Contact Support</a>
+<a class="text-on-surface-variant text-label-sm font-label-sm hover:text-primary transition-colors" href="#">Agricultural Guides</a>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for active cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.98)';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = '';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+
+        // Add sticky header on scroll for mobile
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body></html>

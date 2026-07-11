@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AgriSense AI - Diagnosis Result</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#ffb1c7",
+                    "surface-container-low": "#f3f3f5",
+                    "surface-dim": "#d9dadc",
+                    "on-background": "#1a1c1d",
+                    "on-secondary-fixed-variant": "#0c5216",
+                    "on-surface-variant": "#40493d",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#307231",
+                    "secondary-container": "#acf4a4",
+                    "on-surface": "#1a1c1d",
+                    "on-tertiary-container": "#ffedf0",
+                    "surface-variant": "#e2e2e4",
+                    "surface-container": "#eeeef0",
+                    "surface-container-highest": "#e2e2e4",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#91d78a",
+                    "surface-bright": "#f9f9fb",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#bfcaba",
+                    "primary-fixed": "#a3f69c",
+                    "on-error-container": "#93000a",
+                    "on-primary-container": "#cbffc2",
+                    "inverse-primary": "#88d982",
+                    "secondary": "#2a6b2c",
+                    "surface-tint": "#1b6d24",
+                    "surface-container-high": "#e8e8ea",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#707a6c",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#88d982",
+                    "surface": "#f9f9fb",
+                    "on-primary-fixed": "#002204",
+                    "on-secondary-fixed": "#002203",
+                    "primary-container": "#2e7d32",
+                    "background": "#f9f9fb",
+                    "inverse-on-surface": "#f0f0f2",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#005312",
+                    "on-tertiary-fixed-variant": "#7f2448",
+                    "inverse-surface": "#2f3132",
+                    "secondary-fixed": "#acf4a4",
+                    "primary": "#0d631b",
+                    "tertiary": "#923357",
+                    "on-tertiary-fixed": "#3f001c",
+                    "tertiary-fixed": "#ffd9e2",
+                    "tertiary-container": "#b14b6f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "16px",
+                    "xs": "8px",
+                    "base": "4px",
+                    "md": "24px",
+                    "gutter": "24px",
+                    "lg": "40px",
+                    "margin": "32px",
+                    "xl": "64px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "display-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-sm": ["13px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav-border {
+            position: relative;
+        }
+        .active-nav-border::after {
+            content: '';
+            position: absolute;
+            bottom: -24px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #0d631b;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 226, 228, 0.5);
+        }
+        .bento-card {
+            transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.2s ease;
+        }
+        .bento-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 10px 32px rgba(0, 0, 0, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-32">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-sm h-20">
+<div class="flex justify-between items-center w-full px-margin h-full max-w-7xl mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">potted_plant</span>
+<span class="text-headline-md font-headline-md font-bold text-primary">AgriSense AI</span>
+</div>
+<nav class="hidden md:flex gap-md items-center">
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 transition-all duration-200" href="#">History</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">Chat</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">Profile</a>
+</nav>
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">settings</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img class="w-full h-full object-cover" data-alt="Professional headshot of a Bangladeshi farmer or agricultural consultant, soft outdoor lighting, natural background, minimalist professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRkkTMFwBEJJI7uUrblm-W-ZFbXRiPLUp6bK5T8ThdW4Gg6kn98sAdMiautal7O3DooX8Mhu2xXQxSTaK7iKoCK_MtCYdw_2nUOrqL5RY6DgzHHDAzoiao_c-mA1bn736x3f7ivlAsRPj7v7NpA3eithVXOyjg2U1fiQ4I4XQbPcHAJidl8lp3b98hc7aQeZMoqtdaZ7ZJXB_Id4VWIrx2JkyiOj28K_E_NjaKKxIevhrcVWhwTZ5wEg"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-margin pt-32 pb-xl">
+<!-- Header Section -->
+<div class="mb-lg flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<nav class="flex items-center gap-xs text-label-sm text-on-surface-variant mb-base">
+<span>History</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary">Analysis Result #8294</span>
+</nav>
+<h1 class="text-display-lg-mobile md:text-display-lg font-display-lg text-on-surface">Diagnosis Report</h1>
+<p class="text-body-lg text-on-surface-variant">Detailed health assessment for your Tomato crop.</p>
+</div>
+<div class="flex gap-sm">
+<button class="bg-surface-container hover:bg-surface-container-high text-on-surface px-md py-sm rounded-xl font-label-sm flex items-center gap-xs transition-all active:scale-95">
+<span class="material-symbols-outlined">share</span> Share
+                </button>
+<button class="bg-primary text-on-primary px-md py-sm rounded-xl font-label-sm flex items-center gap-xs shadow-lg transition-all active:scale-95">
+<span class="material-symbols-outlined">download</span> Download Report
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Image & Core Stats -->
+<div class="lg:col-span-5 flex flex-col gap-gutter">
+<!-- Main Detection Image -->
+<div class="glass-panel rounded-3xl overflow-hidden relative shadow-sm group">
+<img class="w-full aspect-[4/5] object-cover group-hover:scale-105 transition-transform duration-700" data-alt="High-resolution macro photography of a tomato leaf infected with Early Blight, showing concentric ring spots and yellowing edges. The lighting is clinical and sharp, highlighting the texture of the pathogen on a clean white laboratory-style background to match the premium AI interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPeb12bjygEZOkzlDKF_vxpo-7ks8OwQekZmSjcruKgEnO9R5qYHfBvXGqhdU4rqzkIBcGaCdkmOgRi4ZIVF06Yo36Vh14aJWr-uHE61zQcdkYhs32BqgnGiT531T4refbW-_DhcMg7XbXbm9wa0tf8-sRQemNFtrKMvrfE3ImgPHTrUEtwKnTev8b0mx9AxfaAMevRtQGAp5tP-gd1AME_4-DcTZLextSSshNQiscCA_djBa-wLwW2Q"/>
+<div class="absolute top-md left-md">
+<span class="bg-error-container text-on-error-container px-md py-xs rounded-full font-label-sm flex items-center gap-xs shadow-sm backdrop-blur-md">
+<span class="material-symbols-outlined text-[18px]">warning</span> Moderate Warning
+                        </span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-md bg-gradient-to-t from-black/60 to-transparent">
+<div class="flex justify-between items-end text-white">
+<div>
+<p class="text-label-sm opacity-80">Detected Crop</p>
+<p class="text-headline-md font-bold">Tomato (Solanum lycopersicum)</p>
+</div>
+<div class="text-right">
+<p class="text-label-sm opacity-80">AI Confidence</p>
+<p class="text-headline-md font-bold text-primary-fixed">94%</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline / Recovery Plan -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-3xl bento-card">
+<h3 class="text-label-sm text-on-surface-variant uppercase tracking-wider mb-md">14-Day Recovery Plan</h3>
+<div class="flex flex-col gap-sm">
+<div class="flex gap-md">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-sm">1</div>
+<div class="w-[2px] h-full bg-outline-variant my-1"></div>
+</div>
+<div class="pb-sm">
+<p class="font-bold text-on-surface">Day 1-3: Containment</p>
+<p class="text-body-md text-on-surface-variant">Prune infected lower leaves and apply copper-based fungicide.</p>
+</div>
+</div>
+<div class="flex gap-md">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold text-sm">7</div>
+<div class="w-[2px] h-full bg-outline-variant my-1"></div>
+</div>
+<div class="pb-sm">
+<p class="font-bold text-on-surface">Day 7: Nutrition Boost</p>
+<p class="text-body-md text-on-surface-variant">Apply NPK 5-10-10 fertilizer to strengthen plant immunity.</p>
+</div>
+</div>
+<div class="flex gap-md">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold text-sm">14</div>
+</div>
+<div>
+<p class="font-bold text-on-surface">Day 14: Evaluation</p>
+<p class="text-body-md text-on-surface-variant">Check for new growth. Ensure no new lesions appear on upper foliage.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Diagnosis & Recommendations -->
+<div class="lg:col-span-7 flex flex-col gap-gutter">
+<!-- Diagnosis Info -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-3xl bento-card">
+<div class="flex items-center gap-md mb-md">
+<div class="w-12 h-12 rounded-2xl bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-3xl">coronavirus</span>
+</div>
+<div>
+<h2 class="text-headline-md font-bold text-on-surface">Early Blight (Alternaria solani)</h2>
+<p class="text-label-sm text-tertiary font-bold">Fungal Infection Detected</p>
+</div>
+</div>
+<p class="text-body-md text-on-surface-variant leading-relaxed mb-lg">
+                        Early blight is caused by the fungus Alternaria solani. It manifests as dark spots with concentric rings (target-like appearance) on older leaves. If left untreated, it can lead to significant leaf loss and reduced fruit yield.
+                    </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Immediate Actions -->
+<div class="p-md rounded-2xl bg-error-container/10 border border-error-container/30">
+<h4 class="font-bold text-on-surface mb-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-error">priority_high</span> Immediate Actions
+                            </h4>
+<ul class="text-body-md text-on-surface-variant space-y-xs">
+<li class="flex items-start gap-xs"><span class="text-primary">•</span> Remove and burn infected leaves.</li>
+<li class="flex items-start gap-xs"><span class="text-primary">•</span> Improve air circulation between plants.</li>
+<li class="flex items-start gap-xs"><span class="text-primary">•</span> Avoid overhead watering.</li>
+</ul>
+</div>
+<!-- Environment -->
+<div class="p-md rounded-2xl bg-surface-container border border-outline-variant">
+<h4 class="font-bold text-on-surface mb-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary">cloud</span> Weather Alert
+                            </h4>
+<div class="flex justify-between items-center bg-white p-sm rounded-xl mb-xs">
+<span class="text-label-sm">Humidity</span>
+<span class="font-bold text-tertiary">88% (High)</span>
+</div>
+<div class="flex justify-between items-center bg-white p-sm rounded-xl">
+<span class="text-label-sm">Rain Forecast</span>
+<span class="font-bold text-primary">Low (Next 48h)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Treatment & Products -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Fertilizer -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-3xl bento-card">
+<div class="flex items-center gap-xs mb-sm">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">Fertilizer Recommendation</span>
+</div>
+<p class="font-bold text-body-lg mb-xs">Potassium-rich Nutrition</p>
+<p class="text-body-md text-on-surface-variant mb-md">Use NPK 5-10-10 formula to promote disease resistance.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="text-headline-md font-bold text-primary">৳450<span class="text-label-sm font-normal text-on-surface-variant">/5kg</span></span>
+<button class="text-primary font-bold text-label-sm flex items-center">Shop Now <span class="material-symbols-outlined text-[18px]">arrow_forward</span></button>
+</div>
+</div>
+<!-- Pesticide -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-3xl bento-card">
+<div class="flex items-center gap-xs mb-sm">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">vaccines</span>
+<span class="text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">Fungicide Control</span>
+</div>
+<p class="font-bold text-body-lg mb-xs">Mancozeb 75% WP</p>
+<p class="text-body-md text-on-surface-variant mb-md">Effective protective fungicide. Alternate with Chlorothalonil.</p>
+<div class="flex items-center justify-between mt-auto">
+<span class="text-headline-md font-bold text-primary">৳320<span class="text-label-sm font-normal text-on-surface-variant">/500g</span></span>
+<button class="text-primary font-bold text-label-sm flex items-center">Find Dealer <span class="material-symbols-outlined text-[18px]">arrow_forward</span></button>
+</div>
+</div>
+</div>
+<!-- Nearby Services -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="rounded-3xl overflow-hidden border border-outline-variant relative h-48 group">
+<div class="w-full h-full bg-surface-container-high flex items-center justify-center" data-location="Gazipur, Bangladesh" style="">
+<!-- Map Placeholder Logic -->
+<div class="absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-500 opacity-60">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist vector map of a rural agricultural district in Bangladesh, styled with soft greens and neutral greys to match the UI. It features subtle map pins for service centers." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCe-Etxvo-0Hfs-lLy5PP1oYzAv3gzxRqw-aEwZCdu79guYUXH1DE_kUJ2PXJ3QvlgJQMWHjSI2mLB3n1tyVLpt5xn_X55zfbu_y-RdbObUlStU5kBiz-oveQJMdQbfL8M0ginEJ0fB18NZBjqnhs03DqyFXxTto9YL0PoQhJbSrOS8M_hmO5zcqGIdovkMr90D3LtwFceYwk9EGTJFAW3tT-_UjoRFQ5OUfRYTI6c7CmHrp2s9-W8Oyg"/>
+</div>
+<div class="relative z-10 bg-white/90 p-md m-md rounded-2xl backdrop-blur-sm border border-outline-variant">
+<p class="text-label-sm font-bold text-primary mb-xs">Nearby Support</p>
+<p class="font-bold text-on-surface">Upazila Agriculture Office</p>
+<p class="text-label-sm text-on-surface-variant">1.2 km away • Open until 5 PM</p>
+</div>
+</div>
+</div>
+<div class="bg-secondary-container/20 border border-secondary-container p-md rounded-3xl bento-card flex flex-col justify-center items-center text-center gap-sm">
+<div class="w-14 h-14 rounded-full bg-secondary text-on-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">chat</span>
+</div>
+<div>
+<p class="font-bold text-body-lg">Talk to an Expert</p>
+<p class="text-body-md text-on-surface-variant">Need specialized advice? Start a session with our verified agronomists.</p>
+</div>
+<button class="bg-secondary text-on-secondary w-full py-sm rounded-xl font-bold transition-all active:scale-95">Ask Follow-up</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar (Mobile Only Style or Global Floating) -->
+<div class="fixed bottom-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-lg border-t border-outline-variant flex justify-around items-center px-4 py-4 md:hidden">
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px]">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="text-[10px]">History</span>
+</button>
+<div class="relative -top-6">
+<button class="w-14 h-14 bg-primary text-on-primary rounded-2xl shadow-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">center_focus_strong</span>
+</button>
+</div>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">chat</span>
+<span class="text-[10px]">Chat</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px]">Profile</span>
+</button>
+</div>
+<!-- Floating AI Prompt -->
+<div class="fixed bottom-margin right-margin z-40 hidden md:block">
+<div class="flex items-center bg-primary-container text-on-primary-container pl-md pr-sm py-sm rounded-full shadow-2xl border border-primary/20 animate-bounce-subtle">
+<span class="text-label-sm font-bold mr-md">Ask AI about these results?</span>
+<button class="bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<style>
+        @keyframes bounce-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-bounce-subtle {
+            animation: bounce-subtle 4s ease-in-out infinite;
+        }
+    </style>
+<footer class="w-full py-xl bg-surface-container-low border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin max-w-7xl mx-auto gap-base">
+<div class="flex flex-col gap-xs items-center md:items-start text-center md:text-left">
+<span class="text-headline-md font-headline-md font-bold text-primary">AgriSense AI</span>
+<p class="text-body-md text-on-surface-variant max-w-md">© 2024 AgriSense AI. Empowering Bangladeshi Farmers through Precision and Intelligent Diagnostics.</p>
+</div>
+<div class="flex gap-md mt-md md:mt-0">
+<a class="text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Support</a>
+<a class="text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Agricultural Guides</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for cards
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.98)';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = 'scale(1)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

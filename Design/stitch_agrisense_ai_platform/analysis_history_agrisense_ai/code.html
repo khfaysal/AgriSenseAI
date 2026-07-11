@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AgriSense AI - Analysis History</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+        .report-card:hover .report-image {
+            transform: scale(1.05);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#ffb1c7",
+                        "surface-container-low": "#f3f3f5",
+                        "surface-dim": "#d9dadc",
+                        "on-background": "#1a1c1d",
+                        "on-secondary-fixed-variant": "#0c5216",
+                        "on-surface-variant": "#40493d",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#307231",
+                        "secondary-container": "#acf4a4",
+                        "on-surface": "#1a1c1d",
+                        "on-tertiary-container": "#ffedf0",
+                        "surface-variant": "#e2e2e4",
+                        "surface-container": "#eeeef0",
+                        "surface-container-highest": "#e2e2e4",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#91d78a",
+                        "surface-bright": "#f9f9fb",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#bfcaba",
+                        "primary-fixed": "#a3f69c",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#cbffc2",
+                        "inverse-primary": "#88d982",
+                        "secondary": "#2a6b2c",
+                        "surface-tint": "#1b6d24",
+                        "surface-container-high": "#e8e8ea",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#707a6c",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#88d982",
+                        "surface": "#f9f9fb",
+                        "on-primary-fixed": "#002204",
+                        "on-secondary-fixed": "#002203",
+                        "primary-container": "#2e7d32",
+                        "background": "#f9f9fb",
+                        "inverse-on-surface": "#f0f0f2",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#005312",
+                        "on-tertiary-fixed-variant": "#7f2448",
+                        "inverse-surface": "#2f3132",
+                        "secondary-fixed": "#acf4a4",
+                        "primary": "#0d631b",
+                        "tertiary": "#923357",
+                        "on-tertiary-fixed": "#3f001c",
+                        "tertiary-fixed": "#ffd9e2",
+                        "tertiary-container": "#b14b6f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "16px",
+                        "xs": "8px",
+                        "base": "4px",
+                        "md": "24px",
+                        "gutter": "24px",
+                        "lg": "40px",
+                        "margin": "32px",
+                        "xl": "64px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "display-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-sm": ["13px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background font-body-md text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 glass-nav shadow-sm">
+<div class="flex justify-between items-center w-full px-margin h-20 max-w-7xl mx-auto">
+<div class="text-headline-md font-headline-md font-bold text-primary">AgriSense AI</div>
+<nav class="hidden md:flex items-center gap-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Dashboard</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md" href="#">History</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Chat</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Profile</a>
+</nav>
+<div class="flex items-center gap-sm">
+<button class="p-2 rounded-full hover:bg-surface-container transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional studio headshot of a friendly agricultural specialist in their late 30s, wearing clean professional attire. The background is a soft-focus modern agricultural laboratory with subtle green accents and bright, natural daylight. The style is clean, high-end, and evokes confidence and expert partnership." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYeRbEbMAkC_CJuLtaSIsI24_M5KitG75b0svOGa0e1ZzCCrolbZL0OVBGlHxlqfavkpmozda5gUOxNLcwOHWIc2fM8Yc-iL0MaG_g5KojoF_IYGNNJygD1HV5fZCyEEG-_KbXPCpFNaFbzez6sximUwy31U5sYRLBnjJjk4oL0dcLlR2S7uWKAYtsXeBHrKzOY4zSQne4zkxkslEq_xOOruykInGpGBjRgBsqajpWCu5MmNukRlnIEA"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-32 pb-24 px-margin max-w-7xl mx-auto min-h-screen">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-xl gap-md">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-2">Analysis History</h1>
+<p class="text-body-lg text-on-surface-variant max-w-2xl">Access and manage all previous crop diagnostic reports generated by AgriSense AI.</p>
+</div>
+<div class="flex items-center gap-sm">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-3 bg-neutral-50 border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all w-full md:w-64 text-body-md" placeholder="Search reports..." type="text"/>
+</div>
+<button class="flex items-center gap-2 px-4 py-3 bg-surface-container-high rounded-xl text-on-surface font-label-sm hover:bg-surface-variant transition-all">
+<span class="material-symbols-outlined">filter_list</span>
+<span>Filters</span>
+</button>
+</div>
+</div>
+<!-- Filters Chips -->
+<div class="flex flex-wrap gap-2 mb-lg">
+<button class="px-4 py-1.5 rounded-full bg-primary text-on-primary text-label-sm">All Reports</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:bg-outline-variant transition-colors text-label-sm">Rice</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:bg-outline-variant transition-colors text-label-sm">Tomato</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:bg-outline-variant transition-colors text-label-sm">Potato</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:bg-outline-variant transition-colors text-label-sm">Last 30 Days</button>
+</div>
+<!-- Analysis Grid -->
+<div class="bento-grid">
+<!-- Card 1: Critical -->
+<div class="report-card group bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-[0px_4px_20px_rgba(0,0,0,0.04)] hover:shadow-lg transition-all duration-300">
+<div class="relative h-48 overflow-hidden">
+<img class="report-image w-full h-full object-cover transition-transform duration-500" data-alt="A high-resolution, close-up macroscopic shot of a tomato leaf showing distinct brown concentric rings and yellow halo patterns typical of early blight disease. The lighting is crisp and detailed, showcasing the texture of the diseased plant tissue. The overall aesthetic is professional, clinical, and scientific, set against a blurred background of a healthy garden." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhu3zpRspjgvRmqolHdLReGON-lW8xMApkDkEX0sXeNtjQvObMqNqeX3h5g5a4-zFA3mKnj4Bd-MYLh4JV3kxMLtPlOw6GI3P7MwV76Ob6R7zhPvbWl7vEBywKwmWP8O4dNa9N7z636qJWAeh-qFxb3sa1R2oy5GtKcfPHAuOp69YWv6Rb3qILgyg3eTqyFQ0m97IPBqYzT13AemaanwNw66S2MDW_KqnKI-mERew-0RpXqWllaFIUCg"/>
+<div class="absolute top-3 right-3 px-3 py-1 rounded-full bg-error text-on-error font-label-sm flex items-center gap-1 shadow-md">
+<span class="material-symbols-outlined text-[16px]">error</span>
+                        Critical
+                    </div>
+</div>
+<div class="p-md">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-on-surface">Tomato - Early Blight</h3>
+<span class="text-primary font-bold text-headline-md">92%</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant mb-md">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span class="text-label-sm">Oct 24, 2024</span>
+</div>
+<p class="text-body-md text-on-surface-variant mb-md line-clamp-2">Large-scale fungal infection detected in the lower canopy. Immediate fungicide application recommended.</p>
+<button class="w-full flex items-center justify-center gap-2 py-3 bg-primary text-on-primary rounded-xl font-label-sm hover:opacity-90 transition-opacity">
+                        View Full Report
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 2: Resolved -->
+<div class="report-card group bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-[0px_4px_20px_rgba(0,0,0,0.04)] hover:shadow-lg transition-all duration-300">
+<div class="relative h-48 overflow-hidden">
+<img class="report-image w-full h-full object-cover transition-transform duration-500" data-alt="A clean, vibrant wide shot of a rice paddy field in Bangladesh under a clear blue sky. The rice stalks show subtle yellowing at the tips, indicating an NPK deficiency that has been addressed. The lighting is warm and golden-hour, giving the scene an optimistic and healthy feel. The photography is professional with a shallow depth of field, focusing on the vibrant green textures of the crop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJV-OpbUS3O3SudKogXoRO2XpLMrQtaVYq0hqDPSsWuJiYMnXaj3I3VRAVoIeqDSolshBRHJWt-3_h-xij4vC8Bv_T61GwtQxVT7IesDpPq2Ty3ZcWBzmneiqUr2DfciJ0eQ80kJY-UcMF06GpB48So1ipDBstbMjVu8f6BR9HYsMcAK-nmm5At3UWFuZZeiuSrtqEb_-bI4e0EUmklWKX3wrq2ZrTkMk-2S53SGbMimfXBwwmnpSneA"/>
+<div class="absolute top-3 right-3 px-3 py-1 rounded-full bg-secondary text-on-secondary font-label-sm flex items-center gap-1 shadow-md">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                        Resolved
+                    </div>
+</div>
+<div class="p-md">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-on-surface">Rice - NPK Deficiency</h3>
+<span class="text-primary font-bold text-headline-md">88%</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant mb-md">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span class="text-label-sm">Oct 18, 2024</span>
+</div>
+<p class="text-body-md text-on-surface-variant mb-md line-clamp-2">Nitrogen and Potassium levels were critically low. Post-treatment analysis shows healthy growth.</p>
+<button class="w-full flex items-center justify-center gap-2 py-3 border border-primary text-primary rounded-xl font-label-sm hover:bg-primary/5 transition-all">
+                        View Full Report
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 3: In Progress -->
+<div class="report-card group bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-[0px_4px_20px_rgba(0,0,0,0.04)] hover:shadow-lg transition-all duration-300">
+<div class="relative h-48 overflow-hidden">
+<img class="report-image w-full h-full object-cover transition-transform duration-500" data-alt="A detailed macro shot of a potato plant leaf exhibiting small, dark brown lesions typical of early stage Late Blight. The leaf is set against a dark, moody background to emphasize the details of the infection. The style is scientific and diagnostic, with sharp focus on the textures of the leaf and the emerging fungal spots. Bright, directional light highlights the structural damage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHquDNjtm5S9ePYJPavuJ0vOADbyWy3rzYPaMHVmH_NAbrppgq6PMhSImD70z7pZwtrrXJaxnWxVMBDSlkWg4Ay3ZS5-zjkLQFh_6GP7qyQ3A83F5kc0z7xN2u4bLl8zb7ehYa5RDrAcI6fb9l7rVnY1AjhJ6_G75VwaZJFNQK-Qwokf0A6KW-ijncbJBfdPCGy5iO1pX-NwEVXOqbqc0Ay07hPuoFj2a3Vm08erGwQdH-jYen2KJByg"/>
+<div class="absolute top-3 right-3 px-3 py-1 rounded-full bg-tertiary text-on-tertiary font-label-sm flex items-center gap-1 shadow-md">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+                        In Progress
+                    </div>
+</div>
+<div class="p-md">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-on-surface">Potato - Late Blight</h3>
+<span class="text-primary font-bold text-headline-md">95%</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant mb-md">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span class="text-label-sm">Oct 22, 2024</span>
+</div>
+<p class="text-body-md text-on-surface-variant mb-md line-clamp-2">Potential outbreak detected. Treatment plan initiated; awaiting 48-hour follow-up scan.</p>
+<button class="w-full flex items-center justify-center gap-2 py-3 border border-primary text-primary rounded-xl font-label-sm hover:bg-primary/5 transition-all">
+                        View Full Report
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 4: Resolved -->
+<div class="report-card group bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-[0px_4px_20px_rgba(0,0,0,0.04)] hover:shadow-lg transition-all duration-300">
+<div class="relative h-48 overflow-hidden">
+<img class="report-image w-full h-full object-cover transition-transform duration-500" data-alt="A high-quality image of healthy, mature maize ears with deep yellow kernels, partially husked to reveal the quality of the crop. The ears are resting on a rustic wooden table in a sunny outdoor setting. The aesthetic is warm, natural, and successful, representing a healthy harvest following successful pest management. Soft sunlight filters through leaves in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFVyVurBrGh8CEvhg_xkMkppVPCfofwV5YCwQ67YAsMiG3PFjIPXfzAjbM0Yy3GYq6yUqPHlNcUL5PVBkXZzPwWU5YzEdHXKNPEfStNefwbhFwB0YTKyePd-RuvlNInekQDHUb1hFmwKlc4Ps3lDH_clltc7tErNLEKYA5su_IaxECrJFUlSilEPZM8YeIhOvBwVDPOjd5j39Juri_XdIaUbTdVa7nSktf9pG-KrdgSFY9KotaKj4Lew"/>
+<div class="absolute top-3 right-3 px-3 py-1 rounded-full bg-secondary text-on-secondary font-label-sm flex items-center gap-1 shadow-md">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                        Resolved
+                    </div>
+</div>
+<div class="p-md">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-on-surface">Maize - Stem Borer</h3>
+<span class="text-primary font-bold text-headline-md">91%</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant mb-md">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span class="text-label-sm">Oct 12, 2024</span>
+</div>
+<p class="text-body-md text-on-surface-variant mb-md line-clamp-2">Pest infestation successfully neutralized using organic pesticide recommendation.</p>
+<button class="w-full flex items-center justify-center gap-2 py-3 border border-primary text-primary rounded-xl font-label-sm hover:bg-primary/5 transition-all">
+                        View Full Report
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 5: Critical -->
+<div class="report-card group bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-[0px_4px_20px_rgba(0,0,0,0.04)] hover:shadow-lg transition-all duration-300">
+<div class="relative h-48 overflow-hidden">
+<img class="report-image w-full h-full object-cover transition-transform duration-500" data-alt="A dramatic close-up of a wheat plant showing orange-brown powdery pustules of leaf rust on the surface of the leaves. The image is captured with professional macro equipment, showing the fungal structures in extreme detail. The background is a soft, out-of-focus wheat field under an overcast sky, creating a somber, serious tone for the diagnostic report." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4dlVCEyhrZRjQSRZJg1qKZibfik3e47ICUGfMcqdkX3VWxPLKq8oNgnQSfRlKdcPRwJMQowji8qxaAgKyvrCyLrsodLyW0LKzJ1Ijv4_T3H5MAwx6-OEMzHjkHV1UowdcnJP7K2-2hm84KCRuRlj6cbHMX4QvOGD47U6Ec0B8yxwJSUzrwXtY78wNOJaw9yY5BKGEecV1KBRvYY2eA4O_pZuGyTeuss6zDJdwl1f2nw7-iCLdprjJ1g"/>
+<div class="absolute top-3 right-3 px-3 py-1 rounded-full bg-error text-on-error font-label-sm flex items-center gap-1 shadow-md">
+<span class="material-symbols-outlined text-[16px]">error</span>
+                        Critical
+                    </div>
+</div>
+<div class="p-md">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-on-surface">Wheat - Leaf Rust</h3>
+<span class="text-primary font-bold text-headline-md">94%</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant mb-md">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span class="text-label-sm">Oct 05, 2024</span>
+</div>
+<p class="text-body-md text-on-surface-variant mb-md line-clamp-2">Rapid spread of leaf rust detected in North-East quadrant. High risk of yield loss.</p>
+<button class="w-full flex items-center justify-center gap-2 py-3 bg-primary text-on-primary rounded-xl font-label-sm hover:opacity-90 transition-opacity">
+                        View Full Report
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Empty/New Analysis Slot -->
+<div class="flex flex-col items-center justify-center border-2 border-dashed border-outline-variant rounded-xl p-md bg-surface-container-lowest hover:bg-primary-container/10 hover:border-primary transition-all group cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform mb-sm">
+<span class="material-symbols-outlined text-[32px]">add_a_photo</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">New Scan</h3>
+<p class="text-body-md text-on-surface-variant text-center">Capture a photo to start a new crop analysis.</p>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-xl flex justify-center items-center gap-2">
+<button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-lg bg-primary text-on-primary font-label-sm">1</button>
+<button class="w-10 h-10 rounded-lg hover:bg-surface-container-high transition-colors font-label-sm">2</button>
+<button class="w-10 h-10 rounded-lg hover:bg-surface-container-high transition-colors font-label-sm">3</button>
+<span class="px-2 text-on-surface-variant">...</span>
+<button class="w-10 h-10 rounded-lg hover:bg-surface-container-high transition-colors font-label-sm">8</button>
+<button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-outline-variant w-full py-xl">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin max-w-7xl mx-auto gap-base">
+<div class="flex flex-col gap-2">
+<div class="text-headline-md font-headline-md font-bold text-primary">AgriSense AI</div>
+<p class="text-body-md text-on-surface-variant">© 2024 AgriSense AI. Empowering Bangladeshi Farmers through Precision.</p>
+</div>
+<nav class="flex flex-wrap justify-center gap-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm" href="#">Contact Support</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm" href="#">Agricultural Guides</a>
+</nav>
+</div>
+</footer>
+<!-- Mobile Bottom Navigation -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 pb-safe bg-surface/90 glass-nav shadow-lg rounded-t-xl border-t border-outline-variant/10">
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-semibold mt-1">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-2xl px-4 py-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">history</span>
+<span class="text-[10px] font-semibold mt-1">History</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[32px] text-primary">center_focus_strong</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">chat</span>
+<span class="text-[10px] font-semibold mt-1">Chat</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-semibold mt-1">Profile</span>
+</button>
+</nav>
+<script>
+        // Simple search interaction
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary/20');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary/20');
+        });
+
+        // Hover micro-interactions for cards
+        const cards = document.querySelectorAll('.report-card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>
