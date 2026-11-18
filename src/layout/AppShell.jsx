@@ -92,7 +92,7 @@ const mobileNav = [
 function BrandText() {
   return (
     <div className="flex flex-col px-2">
-      <Link to="/app" className="text-2xl font-bold text-primary leading-none">
+      <Link to="/" className="text-2xl font-bold text-primary leading-none">
         AgriSense AI
       </Link>
       <span className="text-[13px] font-semibold text-on-surface-variant mt-1">
@@ -232,7 +232,7 @@ export default function AppShell({
       <div className="app-root min-h-screen bg-background text-on-surface font-sans">
         <header className="fixed top-0 inset-x-0 z-50 h-20 bg-surface/80 backdrop-blur-xl">
           <div className="max-w-7xl mx-auto h-full px-8 flex justify-between items-center">
-            <Link to="/app" className="text-2xl font-bold text-primary">
+            <Link to="/" className="text-2xl font-bold text-primary">
               AgriSense AI
             </Link>
             <Link
@@ -253,7 +253,7 @@ export default function AppShell({
     <div className="app-root min-h-screen bg-background text-on-surface font-sans overflow-x-hidden pb-24 md:pb-0">
       {/* Mobile top bar */}
       <header className="md:hidden flex justify-between items-center w-full px-6 h-20 fixed top-0 z-50 bg-surface/80 backdrop-blur-xl shadow-sm">
-        <Link to="/app" className="text-xl font-bold text-primary">
+        <Link to="/" className="text-xl font-bold text-primary">
           AgriSense AI
         </Link>
         <div className="flex gap-3 items-center">

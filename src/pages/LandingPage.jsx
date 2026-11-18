@@ -114,10 +114,10 @@ function Navbar() {
 
   return (
     <nav className="navbar" id="navbar">
-      <div className="nav-brand">
+      <Link to="/" className="nav-brand" style={{ textDecoration: 'none', color: 'inherit' }}>
         <div className="nav-logo">🌾</div>
         <div className="nav-title">AgriSense <span>AI</span></div>
-      </div>
+      </Link>
       <div className="nav-links">
         {links.map(l => (
           <a key={l} className="nav-link" href={`#${l.toLowerCase()}`}>{l}</a>
